@@ -187,4 +187,9 @@ Agents *propose* changes (via `contribute`, `annotate`, `dispute`); the flyperso
 
 ## MCP profile compatibility
 
-Flyloft's MCP server is designed to support per-session profile scoping — so an forestage Supervisor can bring only a relevant subset of Flyloft tools into a Crew session rather than bleeding the full surface into every context. This is the Flyloft-side answer to the MCP profile scoping gap identified in forestage's design.
+Flyloft's MCP server is designed to support per-session profile scoping
+— so a supervisor (under director, when built) can bring only a relevant
+subset of flyloft tools into a crew session rather than bleeding the
+full surface into every context. This is the flyloft-side answer to a
+general MCP ecosystem concern: agent contexts balloon when every
+available tool is exposed by default.

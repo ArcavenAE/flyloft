@@ -95,17 +95,17 @@ A staged build. Each phase ships something usable; later phases extend capabilit
 
 **Done when:** a spiked batten can be promoted to a KOS bedrock node with full provenance and bidirectional references.
 
-## Phase 6 — Marvel integration
+## Phase 6 — marvel integration
 
-**Goal:** first-class embedded deployment inside Marvel.
+**Goal:** first-class provisioning under marvel-managed workloads.
 
-- Auth delegation to Marvel.
-- Provisioning path (Marvel-side automation).
-- REST surface for Forestage/Apron.
-- Spectacle rendering hooks.
-- Team-scoped MCP endpoint registration for forestage.
+- Auth delegation to marvel.
+- Provisioning path (marvel-side automation — git repo, config, endpoint registration).
+- REST surface for human operators hitting flyloft alongside their agent sessions.
+- Team-scoped MCP endpoint registration so marvel-scheduled forestage sessions can reach flyloft.
+- kos co-location and wiring via `flyloft.toml`.
 
-**Done when:** a new Marvel team gets a working Flyloft instance automatically on provisioning.
+**Done when:** a new marvel-managed team gets a working flyloft instance automatically on provisioning.
 
 ## Phase 7 — BYOA polish
 

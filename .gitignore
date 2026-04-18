@@ -1,0 +1,22 @@
+# Rust
+/target
+**/*.rs.bk
+
+# Flyloft — derived artifacts rebuild from the grid
+/index/
+**/.flyloft/
+flyloft.local.toml
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Env
+.env
+.env.local
+
+# Beads symlink to orchestrator-level task tracker
+.beads

@@ -1,0 +1,52 @@
+id: bat_ccccegress003
+line_set: ls_01hxxxegress
+content:
+  kind: held
+  text: |
+    Cilium resolves the DNS at request time and installs ephemeral per-IP
+    allows. This works well for stable CDN-fronted services but can misfire
+    for services that rotate IPs faster than the TTL.
+parent: null
+position:
+  ordinal: 1
+  path: ["DNS-based egress"]
+  char_range: [410, 710]
+provenance:
+  rigged_at: "2026-03-14T10:23:11Z"
+  rigged_by:
+    kind: human
+    id: "avi@arcaven"
+    display: "Avi"
+  extraction:
+    method: semantic_chunk
+    model: "bge-small-en-v1.5"
+    target_tokens: 512
+  upstream_ref: null
+confidence: graveyard
+spiked: false
+dogged: false
+annotations:
+  - by:
+      kind: human
+      id: "avi@arcaven"
+      display: "Avi"
+    at: "2026-03-22T11:47:03Z"
+    kind: flyperson_note
+    note: |
+      Struck. Original text said "request time" but Cilium resolves at policy
+      apply time with a DNS polling interval, not per-request. Superseded by
+      material rigged from the Cilium 1.15 upstream docs directly. See
+      ls_01hyyyciliumfqdn.
+    reviewed: true
+entities:
+  - name: "Cilium"
+    kind: technology
+    confidence: 0.99
+  - name: "DNS"
+    kind: protocol
+    confidence: 0.98
+promoted_to: null
+struck_at: "2026-03-22T11:47:03Z"
+struck_reason: "Superseded — inaccurate description of resolution timing"
+rigged_at: "2026-03-14T10:23:11Z"
+last_modified: "2026-03-22T11:47:03Z"

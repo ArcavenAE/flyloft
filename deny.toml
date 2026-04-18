@@ -1,0 +1,30 @@
+[advisories]
+ignore = []
+
+[licenses]
+# Permissive allow list. Adding a new license requires explicit review.
+allow = [
+    "0BSD",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "BSL-1.0",
+    "CC0-1.0",
+    "ISC",
+    "MIT",
+    "MPL-2.0",
+    "Unicode-3.0",
+    "Zlib",
+]
+
+[[licenses.exceptions]]
+allow = ["CDLA-Permissive-2.0"]
+name = "webpki-roots"
+
+[bans]
+multiple-versions = "warn"
+wildcards = "allow"
+
+[sources]
+allow-git = []

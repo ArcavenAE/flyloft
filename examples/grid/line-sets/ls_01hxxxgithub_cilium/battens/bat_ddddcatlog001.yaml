@@ -1,0 +1,66 @@
+id: bat_ddddcatlog001
+line_set: ls_01hxxxgithub_cilium
+content:
+  kind: cataloged
+  catalog: arcaven-github
+  external_id: "issues/47"
+  url: "https://github.com/ArcavenAE/flyloft/issues/47"
+  snippet: |
+    Discussion of how Cilium FQDN policies handle TLS SNI for egress. Consensus:
+    SNI-based filtering is available via the Envoy integration but adds latency
+    vs pure L3/L4 policy. Tradeoff noted for high-throughput pod workloads.
+  cache_policy:
+    mode: ttl
+    seconds: 3600
+  last_fetched: "2026-04-14T08:22:03Z"
+  adapter_metadata:
+    repo: "ArcavenAE/flyloft"
+    kind: "issue"
+    state: "open"
+    author: "avi"
+    labels: ["cilium", "egress", "performance"]
+    comment_count: 7
+parent: null
+position:
+  ordinal: 0
+  path: ["github", "ArcavenAE/flyloft", "issues", "47"]
+  char_range: null
+provenance:
+  rigged_at: "2026-04-10T14:02:11Z"
+  rigged_by:
+    kind: human
+    id: "avi@arcaven"
+    display: "Avi"
+  extraction:
+    method: manual      # catalog slice, not semantic-chunked
+  upstream_ref: "https://github.com/ArcavenAE/flyloft/issues/47"
+confidence: frontier
+spiked: false
+dogged: false
+annotations:
+  - by:
+      kind: human
+      id: "avi@arcaven"
+      display: "Avi"
+    at: "2026-04-12T10:15:00Z"
+    kind: flyperson_note
+    note: |
+      Keeping cataloged for now — this is an active discussion. When the issue
+      resolves, consider `flyloft adopt` to pin the conclusion into the stacks.
+    reviewed: true
+entities:
+  - name: "Cilium"
+    kind: technology
+    confidence: 0.99
+  - name: "FQDN"
+    kind: concept
+    confidence: 0.94
+  - name: "TLS SNI"
+    kind: protocol
+    confidence: 0.91
+  - name: "Envoy"
+    kind: technology
+    confidence: 0.88
+promoted_to: null
+rigged_at: "2026-04-10T14:02:11Z"
+last_modified: "2026-04-12T10:15:00Z"

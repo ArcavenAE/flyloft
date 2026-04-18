@@ -1,0 +1,57 @@
+id: bat_bbbbegress002
+line_set: ls_01hxxxegress
+content:
+  kind: held
+  text: |
+    `toFQDNs` wildcards like `*.example.com` do NOT match `example.com` itself —
+    only subdomains. To permit both apex and subdomains you must list them
+    separately. This trips up most teams at least once.
+parent: null
+position:
+  ordinal: 2
+  path: ["Wildcard gotchas"]
+  char_range: [820, 1090]
+provenance:
+  rigged_at: "2026-03-14T10:23:11Z"
+  rigged_by:
+    kind: human
+    id: "avi@arcaven"
+    display: "Avi"
+  extraction:
+    method: semantic_chunk
+    model: "bge-small-en-v1.5"
+    target_tokens: 512
+  upstream_ref: null
+confidence: bedrock
+spiked: true
+dogged: false
+annotations:
+  - by:
+      kind: human
+      id: "avi@arcaven"
+      display: "Avi"
+    at: "2026-03-18T14:02:17Z"
+    kind: flyperson_note
+    note: "Corroborated against upstream Cilium docs 1.15 and reproduced in lab. Spiking."
+    reviewed: true
+  - by:
+      kind: agent
+      id: "crew-secops-03"
+      runtime: "forestage-0.2"
+    at: "2026-04-02T09:11:44Z"
+    kind: cross_reference
+    note: "Related to KOS node kos:cilium-fqdn-semantics covering the broader FQDN policy model."
+    reviewed: true
+entities:
+  - name: "Cilium"
+    kind: technology
+    confidence: 0.99
+  - name: "toFQDNs"
+    kind: api_field
+    confidence: 0.97
+  - name: "DNS"
+    kind: protocol
+    confidence: 0.85
+promoted_to: null
+rigged_at: "2026-03-14T10:23:11Z"
+last_modified: "2026-04-02T09:11:44Z"

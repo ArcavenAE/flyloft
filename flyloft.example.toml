@@ -1,0 +1,143 @@
+# Flyloft configuration
+#
+# Copy to `flyloft.toml` and edit. Sensitive values (tokens, API keys) belong
+# in `flyloft.local.toml` which is gitignored, or in environment variables.
+
+[flyloft]
+name = "mss-flyloft"
+description = "Managed Security Services knowledge substrate"
+
+# --- Storage ------------------------------------------------------------------
+
+[storage]
+# Path to the grid (relative to this config, or absolute).
+grid = "./grid"
+# Path to the derived index. Rebuilt from the grid; safe to gitignore.
+index = "./index"
+# Path to the cue sheet (retrieval log).
+cues = "./cues"
+
+# --- Git ----------------------------------------------------------------------
+
+[git]
+# Commit automatically on curation operations.
+auto_commit = true
+# Remote to push to on commit. Leave empty to disable.
+remote = ""
+# Signing key fingerprint (optional).
+signing_key = ""
+
+# --- Ingestion ----------------------------------------------------------------
+
+[ingestion.chunking]
+strategy = "semantic"           # "semantic" | "fixed" | "document"
+target_tokens = 512             # target size for semantic chunking
+overlap_tokens = 64             # overlap for fixed chunking
+min_tokens = 64                 # minimum chunk size
+
+[ingestion.entity_extraction]
+enabled = true
+backend = "local-ner"           # "local-ner" | "llm" | "disabled"
+# When backend = "llm", configure the model below.
+
+# --- Embeddings ---------------------------------------------------------------
+
+[embeddings]
+backend = "local"               # "local" | "cohere" | "voyage" | "openai"
+model = "bge-small-en-v1.5"
+dimensions = 384
+batch_size = 32
+
+# --- Reranker -----------------------------------------------------------------
+
+[reranker]
+backend = "local"               # "local" | "cohere" | "voyage"
+model = "bge-reranker-base"
+top_k = 20                      # how many candidates feed into the reranker
+
+# --- Retrieval ----------------------------------------------------------------
+
+[retrieval]
+default_k = 8
+expand_parents = true
+dense_weight = 0.5              # weight in RRF union before rerank
+sparse_weight = 0.5
+# Query rewrite default. Agents can override per-call.
+rewrite = "auto"                # "auto" | "off" | "hyde" | "decompose"
+
+# --- Cue sheet (retrieval telemetry) ------------------------------------------
+
+[cues]
+enabled = true
+# Rotate cue sheet files monthly.
+rotation = "monthly"
+# Retain cues for this many days before archival.
+retention_days = 365
+
+# --- KOS integration ----------------------------------------------------------
+
+[kos]
+enabled = false
+repo = "git@github.com:arcaven/threedoors-kos.git"
+branch = "main"
+# Default confidence level for battens promoted into KOS.
+promotion_default_confidence = "bedrock"
+
+# --- Catalogs -----------------------------------------------------------------
+#
+# External sources exposed through adapters. Catalogs are queried alongside
+# the local stacks when in_default_federation = true. See docs/CATALOGS.md.
+#
+# Secrets (tokens, keys) live in environment variables, not in this file.
+
+[[catalogs]]
+id = "arcaven-github"
+adapter = "github"
+in_default_federation = true
+cache = { mode = "ttl", seconds = 3600 }
+
+  [catalogs.config]
+  org = "ArcavenAE"
+  repos = ["flyloft", "forestage"]
+  include = ["issues", "pulls", "markdown"]
+  token_env = "GITHUB_TOKEN"
+
+[[catalogs]]
+id = "team-confluence"
+adapter = "confluence"
+in_default_federation = true
+cache = { mode = "ttl", seconds = 86400 }
+
+  [catalogs.config]
+  base_url = "https://company.atlassian.net/wiki"
+  space_keys = ["MSS", "PLAT"]
+  token_env = "CONFLUENCE_TOKEN"
+
+[[catalogs]]
+id = "peer-flyloft-secops"
+adapter = "flyloft"
+in_default_federation = false        # opt-in per query; explicit inter-flyloft loan
+cache = { mode = "none" }
+
+  [catalogs.config]
+  endpoint = "https://flyloft.secops.internal/mcp"
+  token_env = "PEER_FLYLOFT_TOKEN"
+
+# --- Exposure (MCP / REST) ----------------------------------------------------
+
+[server]
+mcp_enabled = true
+rest_enabled = false
+bind = "127.0.0.1"
+port = 7070
+
+[auth]
+# Mode: "marvel" (delegate to Marvel), "tokens" (Flyloft issues own), "none" (dev).
+mode = "tokens"
+tokens_file = "./.flyloft/tokens.sqlite"
+
+# --- Logging ------------------------------------------------------------------
+
+[logging]
+level = "info"                  # "trace" | "debug" | "info" | "warn" | "error"
+format = "text"                 # "text" | "json"

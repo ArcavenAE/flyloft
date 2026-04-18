@@ -1,0 +1,20 @@
+id: ls_01hxxxgithub_cilium
+title: "GitHub issues & PRs: Cilium topics in ArcavenAE/flyloft"
+tags:
+  - cilium
+  - github
+  - active
+rigged_at: "2026-04-10T14:02:11Z"
+rigged_by:
+  kind: human
+  id: "avi@arcaven"
+  display: "Avi"
+struck: null
+dogged: false
+source:
+  kind: catalog
+  catalog: arcaven-github
+  query: "cilium egress"
+  collection_id: null
+batten_ids:
+  - bat_ddddcatlog001

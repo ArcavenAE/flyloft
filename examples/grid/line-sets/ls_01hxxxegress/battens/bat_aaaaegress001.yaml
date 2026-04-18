@@ -1,0 +1,39 @@
+id: bat_aaaaegress001
+line_set: ls_01hxxxegress
+content:
+  kind: held
+  text: |
+    Cilium egress policies apply to pods matching the `endpointSelector`. When
+    multiple policies match the same endpoint, their rules are additive — the
+    union of allowed destinations is permitted. There is no deny-by-default
+    across policies; any policy matching the endpoint contributes its allows.
+parent: null
+position:
+  ordinal: 0
+  path: ["Selector semantics"]
+  char_range: [30, 370]
+provenance:
+  rigged_at: "2026-03-14T10:23:11Z"
+  rigged_by:
+    kind: human
+    id: "avi@arcaven"
+    display: "Avi"
+  extraction:
+    method: semantic_chunk
+    model: "bge-small-en-v1.5"
+    target_tokens: 512
+  upstream_ref: null
+confidence: frontier
+spiked: false
+dogged: false
+annotations: []
+entities:
+  - name: "Cilium"
+    kind: technology
+    confidence: 0.99
+  - name: "endpointSelector"
+    kind: api_field
+    confidence: 0.92
+promoted_to: null
+rigged_at: "2026-03-14T10:23:11Z"
+last_modified: "2026-03-14T10:23:11Z"

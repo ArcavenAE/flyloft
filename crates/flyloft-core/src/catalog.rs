@@ -8,7 +8,6 @@
 //!
 //! See `docs/CATALOGS.md` for the full concept doc.
 
-use crate::BattenId;
 use async_trait::async_trait;
 use serde::{Deserialize, Serialize};
 
@@ -21,11 +20,11 @@ pub struct CatalogId(pub String);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatalogDescription {
     pub id: CatalogId,
-    pub adapter: String,             // e.g. "github", "confluence", "flyloft"
+    pub adapter: String, // e.g. "github", "confluence", "flyloft"
     pub display_name: String,
     pub notes: Option<String>,
     pub in_default_federation: bool,
-    pub supports_fetch: bool,        // false for search-only adapters
+    pub supports_fetch: bool, // false for search-only adapters
     pub rate_limit_hint: Option<String>,
 }
 
@@ -71,11 +70,7 @@ pub trait Catalog: Send + Sync {
     fn describe(&self) -> CatalogDescription;
 
     /// Search the catalog. Returns lightweight pointers.
-    async fn search(
-        &self,
-        query: &str,
-        limit: usize,
-    ) -> anyhow::Result<Vec<CatalogRef>>;
+    async fn search(&self, query: &str, limit: usize) -> anyhow::Result<Vec<CatalogRef>>;
 
     /// Fetch full content for an external id previously returned by `search`.
     /// Adapters that are search-only may return an Err here and set
@@ -88,21 +83,16 @@ pub trait Catalog: Send + Sync {
 }
 
 /// Cache policy for a cataloged batten.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 #[serde(tag = "mode", rename_all = "snake_case")]
 pub enum CachePolicy {
     /// Don't cache. Fetch every resolution.
+    #[default]
     None,
     /// Cache with a time-to-live.
     Ttl { seconds: u64 },
     /// Cache indefinitely; invalidate manually.
     Pinned,
-}
-
-impl Default for CachePolicy {
-    fn default() -> Self {
-        CachePolicy::None
-    }
 }
 
 /// The pointer stored on a cataloged batten. Distinct from `CatalogRef` —

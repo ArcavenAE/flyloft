@@ -19,7 +19,6 @@ pub use cue::{Cue, CueId};
 pub use grid::Grid;
 pub use line_set::{LineSet, LineSetId};
 pub use provenance::{Confidence, Contributor, Provenance};
-
 use serde::{Deserialize, Serialize};
 
 /// A position of a batten within its parent line set.

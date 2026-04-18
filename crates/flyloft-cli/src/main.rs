@@ -44,22 +44,46 @@ enum Command {
 
     // -- curation (privileged) --
     /// Mark a batten as authoritative.
-    Spike { batten_id: String, #[arg(long)] reason: Option<String> },
+    Spike {
+        batten_id: String,
+        #[arg(long)]
+        reason: Option<String>,
+    },
     /// Retire a batten or line set.
-    Strike { id: String, #[arg(long)] reason: Option<String> },
+    Strike {
+        id: String,
+        #[arg(long)]
+        reason: Option<String>,
+    },
     /// Lock a line set against modification.
-    Dog { line_set_id: String, #[arg(long)] release: bool },
+    Dog {
+        line_set_id: String,
+        #[arg(long)]
+        release: bool,
+    },
     /// Attach a note to a batten.
-    Annotate { batten_id: String, #[arg(long)] note: Option<String> },
+    Annotate {
+        batten_id: String,
+        #[arg(long)]
+        note: Option<String>,
+    },
     /// Register or resolve a dispute.
     #[command(subcommand)]
     Dispute(DisputeCmd),
     /// Promote a spiked batten into KOS.
-    Promote { batten_id: String, #[arg(long)] to: String },
+    Promote {
+        batten_id: String,
+        #[arg(long)]
+        to: String,
+    },
 
     /// Convert a cataloged batten into a held batten by fetching and
     /// persisting its current content into the stacks.
-    Adopt { batten_id: String, #[arg(long)] reason: Option<String> },
+    Adopt {
+        batten_id: String,
+        #[arg(long)]
+        reason: Option<String>,
+    },
 
     // -- catalogs --
     #[command(subcommand)]
@@ -82,9 +106,15 @@ enum Command {
     #[command(subcommand)]
     Config(ConfigCmd),
     /// Health-check the grid.
-    Doctor { #[arg(long)] fix: bool },
+    Doctor {
+        #[arg(long)]
+        fix: bool,
+    },
     /// Rebuild the derived index from the grid.
-    Reindex { #[arg(long)] only: Option<String> },
+    Reindex {
+        #[arg(long)]
+        only: Option<String>,
+    },
 }
 
 #[derive(clap::Args)]
@@ -135,7 +165,11 @@ enum ContributeCmd {
     /// Rig a pending contribution.
     Accept { pending_id: String },
     /// Discard a pending contribution.
-    Reject { pending_id: String, #[arg(long)] reason: Option<String> },
+    Reject {
+        pending_id: String,
+        #[arg(long)]
+        reason: Option<String>,
+    },
     /// Hold for later.
     Defer { pending_id: String },
 }
@@ -164,12 +198,18 @@ struct FlyArgs {
 #[derive(Subcommand)]
 enum DisputeCmd {
     /// Register a new dispute.
-    Open { batten_id: String, #[arg(long)] reason: String },
+    Open {
+        batten_id: String,
+        #[arg(long)]
+        reason: String,
+    },
     /// Resolve an open dispute.
     Resolve {
         dispute_id: String,
-        #[arg(long)] action: String, // strike | annotate | dismiss
-        #[arg(long)] note: Option<String>,
+        #[arg(long)]
+        action: String, // strike | annotate | dismiss
+        #[arg(long)]
+        note: Option<String>,
     },
 }
 
@@ -185,18 +225,31 @@ struct WeedArgs {
 
 #[derive(Subcommand)]
 enum CueCmd {
-    Recent { #[arg(long, default_value_t = 50)] n: usize },
+    Recent {
+        #[arg(long, default_value_t = 50)]
+        n: usize,
+    },
     Gaps,
     Coldspots,
     Hotspots,
-    ByRequester { id: String },
+    ByRequester {
+        id: String,
+    },
 }
 
 #[derive(Subcommand)]
 enum EntityCmd {
-    List { #[arg(long)] kind: Option<String> },
-    Show { name: String },
-    Merge { from: String, to: String },
+    List {
+        #[arg(long)]
+        kind: Option<String>,
+    },
+    Show {
+        name: String,
+    },
+    Merge {
+        from: String,
+        to: String,
+    },
 }
 
 #[derive(Subcommand)]
@@ -209,14 +262,22 @@ enum CatalogCmd {
     Describe { id: String },
     /// Register a new catalog.
     Add {
-        #[arg(long)] id: String,
-        #[arg(long)] adapter: String,
-        #[arg(long)] federate: bool,
+        #[arg(long)]
+        id: String,
+        #[arg(long)]
+        adapter: String,
+        #[arg(long)]
+        federate: bool,
         /// Key=value pairs for adapter-specific config (repeatable).
-        #[arg(long)] config: Vec<String>,
+        #[arg(long)]
+        config: Vec<String>,
     },
     /// Unregister a catalog. Cataloged battens referencing it become unresolvable.
-    Remove { id: String, #[arg(long)] force: bool },
+    Remove {
+        id: String,
+        #[arg(long)]
+        force: bool,
+    },
 }
 
 #[derive(Subcommand)]

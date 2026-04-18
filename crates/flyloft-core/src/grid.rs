@@ -4,8 +4,9 @@
 //! layout, git integration, and the verb operations (rig, fly, strike,
 //! spike, dog). Stub for now.
 
-use crate::{Batten, BattenId, LineSet, LineSetId};
 use std::path::PathBuf;
+
+use crate::{Batten, BattenId, LineSet, LineSetId};
 
 pub struct Grid {
     pub root: PathBuf,

@@ -4,10 +4,11 @@
 //! annotations, and entity links. Battens hang from the grid; they are rigged,
 //! spiked, dogged, or struck.
 
-use crate::catalog::{CatalogId, CatalogPointer};
-use crate::{Annotation, EntityRef, LineSetId, Position};
-use crate::provenance::{Confidence, Provenance};
 use serde::{Deserialize, Serialize};
+
+use crate::catalog::{CatalogId, CatalogPointer};
+use crate::provenance::{Confidence, Provenance};
+use crate::{Annotation, EntityRef, LineSetId, Position};
 
 /// Content-addressable identifier for a batten.
 ///
@@ -27,11 +28,7 @@ impl BattenId {
         Self(format!("bat_{}", &hash.to_hex()[..24]))
     }
 
-    pub fn from_cataloged(
-        line_set: &LineSetId,
-        catalog: &CatalogId,
-        external_id: &str,
-    ) -> Self {
+    pub fn from_cataloged(line_set: &LineSetId, catalog: &CatalogId, external_id: &str) -> Self {
         let mut hasher = blake3::Hasher::new();
         hasher.update(b"cataloged:");
         hasher.update(line_set.0.as_bytes());

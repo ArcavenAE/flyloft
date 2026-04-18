@@ -4,10 +4,11 @@
 //! an API export). It owns its battens; striking a line set retires all
 //! its battens.
 
+use serde::{Deserialize, Serialize};
+
 use crate::BattenId;
 use crate::catalog::CatalogId;
 use crate::provenance::Contributor;
-use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct LineSetId(pub String);
@@ -42,11 +43,25 @@ pub struct LineSet {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case")]
 pub enum Source {
-    File { path: String, sha256: String },
-    Url { url: String, fetched_at: chrono::DateTime<chrono::Utc> },
-    Transcript { session: String, speakers: Vec<String> },
-    Api { endpoint: String, params: serde_json::Value },
-    Text { origin: String },
+    File {
+        path: String,
+        sha256: String,
+    },
+    Url {
+        url: String,
+        fetched_at: chrono::DateTime<chrono::Utc>,
+    },
+    Transcript {
+        session: String,
+        speakers: Vec<String>,
+    },
+    Api {
+        endpoint: String,
+        params: serde_json::Value,
+    },
+    Text {
+        origin: String,
+    },
     /// A slice of an external catalog materialized as a line set.
     /// Battens in this line set may be held (rigged into the stacks) or
     /// cataloged (pointers resolved on demand), depending on how the slice

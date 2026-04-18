@@ -5,21 +5,16 @@
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub enum Confidence {
     /// Corroborated, spiked, stable. Candidate for KOS promotion.
     Bedrock,
     /// Default for newly rigged material. Active in retrieval, provisional.
+    #[default]
     Frontier,
     /// Struck. Preserved in the grid but not returned by retrieval.
     Graveyard,
-}
-
-impl Default for Confidence {
-    fn default() -> Self {
-        Confidence::Frontier
-    }
 }
 
 /// Who contributed (rigged, annotated, disputed) something.

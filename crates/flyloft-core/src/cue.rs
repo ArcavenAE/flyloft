@@ -5,9 +5,10 @@
 //! nothing, what's retrieved-but-never-cited (cold), what's frequently cited
 //! (hot and a candidate for spiking).
 
+use serde::{Deserialize, Serialize};
+
 use crate::BattenId;
 use crate::provenance::Contributor;
-use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct CueId(pub String);

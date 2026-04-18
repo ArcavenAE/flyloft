@@ -24,8 +24,7 @@ async fn main() -> Result<()> {
         .with_env_filter(tracing_subscriber::EnvFilter::from_default_env())
         .init();
 
-    let grid_root = std::env::var("FLYLOFT_ROOT")
-        .unwrap_or_else(|_| ".".to_string());
+    let grid_root = std::env::var("FLYLOFT_ROOT").unwrap_or_else(|_| ".".to_string());
     let _grid = Grid::open(grid_root)?;
 
     tracing::info!("flyloft-mcp starting (stub)");

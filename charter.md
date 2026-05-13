@@ -145,20 +145,17 @@ layers on top once the substrate is stable.
 
 ### Other candidate questions (from the design documents)
 
-Not yet promoted to node form:
+Pre-frontier brainstorming lives in `_kos/ideas/`. Five candidates
+captured there (session-049 extraction per finding-047):
 
-- Is the held + cataloged unification viable at query time, or does it
-  force a second-class experience on one or the other?
-- Does reciprocal-rank-fusion across stacks + catalogs produce a useful
-  merged set, or does per-source score normalization matter before
-  rerank?
-- At what corpus size does the local reranker (cross-encoder) become
-  the bottleneck?
-- Does the flyperson's grooming surface actually pay off — is the cue
-  sheet telemetry strong enough signal to drive curation?
-- What breaks first when federation expands beyond 2-3 catalogs?
+- `held-cataloged-unification-viability.md`
+- `reciprocal-rank-fusion-normalization.md`
+- `local-reranker-bottleneck-at-corpus-scale.md`
+- `flyperson-grooming-surface-payoff.md`
+- `federation-expansion-breakage.md`
 
-Promote these into `_kos/nodes/frontier/` once framed as probes.
+Promote each into `_kos/nodes/frontier/` once framed as a probe
+brief with hypothesis, timebox, and success signal.
 
 ---
 

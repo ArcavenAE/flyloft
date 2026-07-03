@@ -1,0 +1,27 @@
+id: question-stage-rig-lod-axis
+type: question
+confidence: frontier
+title: "Stage-rig LOD axis on battens — ratified flyloft scope; mechanics undesigned"
+content: |
+  Ratified INTO flyloft 2026-07-02 (atelier review; ratification-gate
+  discipline — this node is the acceptance). Viewing distance becomes
+  a first-class axis on every batten (backdrop | scenery | prop),
+  sibling to confidence: the castle painted tiny for the distance
+  shot, or the castle wall full-size when the action is against it.
+  The flyperson curates depth, not just inclusion. Load-bearing rule
+  (orc F25): backdrops are AUTHORED, never auto-summarized; props stay
+  in the loft at full fidelity — no industrialized forgetting.
+
+  Scope split: the DATA-MODEL axis and its curation verbs belong here
+  (batten schema gains the distance field at Phase 0); the RESEARCH
+  program (questions A-H: shape features, drift detection, cue
+  semantics, distance-as-verb, etc.) stays at orc level
+  (question-stage-rig-information-architecture) until probed.
+  Questions for this repo: schema representation; how rig/fly/cue
+  verbs take distance parameters; default distance on ingest; the
+  backdrop-authoring workflow.
+edges: []
+provenance:
+  created_by: human
+  session: session-052
+  created_at: "2026-07-02"

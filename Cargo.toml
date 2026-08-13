@@ -42,7 +42,7 @@ tantivy = "0.22"
 rusqlite = { version = "0.31", features = ["bundled"] }
 
 # Git
-git2 = "0.18"
+git2 = "0.21"
 
 # MCP (placeholder — pin when upstream stabilizes)
 # mcp-sdk = "..."

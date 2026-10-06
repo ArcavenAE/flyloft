@@ -24,9 +24,10 @@ authored, or a parameter of retrieval?
 |---|---|---|
 | A. Authored property only | stored on the batten; retrieval cannot ask for a distance | contradicts charter F2 ("Retrieval has a distance parameter") |
 | B. Retrieval parameter only | no stored field; one batten surfaces at whatever depth a query asks | contradicts charter F2 ("Viewing-distance is authored") and C4 (backdrops are painted, never derived from props); it would let a prop be rendered as a backdrop, which C1 calls a type error |
-| C. Both, composed | the stored distance is what the batten is; the retrieval parameter selects which stored distances come back | **recommended** |
+| C. Both, composed | the stored distance is what the batten is; the retrieval parameter selects which stored distances come back | **ruled** 2026-10-06 |
 
-**Recommendation: C.** It is already ruled, not open. The flyloft node
+**Ruling: C.** The operator ruled it on 2026-10-06: "flyloft distance (C)".
+It was already ruled in substance, not open. The flyloft node
 `question-stage-rig-lod-axis` records the data-model axis as ratified into
 flyloft on 2026-07-02 ("batten schema gains the distance field at Phase
 0"), and charter F2 states both halves. What remained open was how the two
@@ -37,9 +38,6 @@ request for distance `d` returns battens whose stored distance is `d`, and
 nothing else. When none match, it says so and names the counts at the other
 distances. It never substitutes a prop for a missing backdrop, because
 "backdrop and prop coexist, never substitute" (F2).
-
-This recommendation is valid until 2026-10-20, or until p4t1.5's build
-starts, whichever comes first. The architect re-checks it then.
 
 ## The type change
 

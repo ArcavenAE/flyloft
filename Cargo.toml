@@ -37,8 +37,8 @@ async-trait = "0.1"
 clap = { version = "4", features = ["derive"] }
 
 # Storage / index
-lancedb = "0.38"
-tantivy = "0.26"
+lancedb = "0.40"
+tantivy = "0.27"
 rusqlite = { version = "0.40", features = ["bundled"] }
 
 # Git

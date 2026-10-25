@@ -17,6 +17,32 @@ pub enum Confidence {
     Graveyard,
 }
 
+/// How far from the material a batten sits, stage-rig style.
+///
+/// Fixed when the batten is built: nothing changes a batten's distance, so a
+/// prop never becomes a backdrop (design: `docs/design/distance-axis.md`).
+/// Costumes, the fourth stage-rig distance, are agent identity, not battens.
+#[derive(Debug, Clone, Copy, Default, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "snake_case")]
+#[non_exhaustive]
+pub enum Distance {
+    /// Painted overview of a body of props. Authored text, never derived.
+    Backdrop,
+    /// Mid-distance material that points at the props it summarizes.
+    Scenery,
+    /// Source material held verbatim, or a pointer into a catalog. What
+    /// `rig` ingests.
+    #[default]
+    Prop,
+}
+
+impl Distance {
+    /// True for the distances that project props (backdrop and scenery).
+    pub fn projects_props(self) -> bool {
+        matches!(self, Distance::Backdrop | Distance::Scenery)
+    }
+}
+
 /// Who contributed (rigged, annotated, disputed) something.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case")]

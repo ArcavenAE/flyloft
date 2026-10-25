@@ -13,12 +13,12 @@ pub mod grid;
 pub mod line_set;
 pub mod provenance;
 
-pub use batten::{Batten, BattenContent, BattenId};
+pub use batten::{Batten, BattenContent, BattenError, BattenId, NewBatten};
 pub use catalog::{Catalog, CatalogId, CatalogPointer, CatalogRef, CatalogRegistry};
 pub use cue::{Cue, CueId};
 pub use grid::Grid;
 pub use line_set::{LineSet, LineSetId};
-pub use provenance::{Confidence, Contributor, Provenance};
+pub use provenance::{Confidence, Contributor, Distance, Provenance};
 use serde::{Deserialize, Serialize};
 
 /// A position of a batten within its parent line set.

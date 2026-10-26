@@ -93,15 +93,15 @@ fn distance_defaults_to_prop() {
 #[test]
 fn distance_serializes_snake_case() {
     assert_eq!(
-        serde_yaml::to_string(&Distance::Backdrop).unwrap().trim(),
+        serde_norway::to_string(&Distance::Backdrop).unwrap().trim(),
         "backdrop"
     );
     assert_eq!(
-        serde_yaml::to_string(&Distance::Scenery).unwrap().trim(),
+        serde_norway::to_string(&Distance::Scenery).unwrap().trim(),
         "scenery"
     );
     assert_eq!(
-        serde_yaml::to_string(&Distance::Prop).unwrap().trim(),
+        serde_norway::to_string(&Distance::Prop).unwrap().trim(),
         "prop"
     );
 }
@@ -167,16 +167,16 @@ fn getters_report_what_was_built() {
 #[test]
 fn a_backdrop_round_trips_with_its_projects() {
     let b = backdrop();
-    let yaml = serde_yaml::to_string(&b).unwrap();
+    let yaml = serde_norway::to_string(&b).unwrap();
     assert!(yaml.contains("distance: backdrop"), "{yaml}");
-    let back: Batten = serde_yaml::from_str(&yaml).unwrap();
+    let back: Batten = serde_norway::from_str(&yaml).unwrap();
     assert_eq!(back.distance(), Distance::Backdrop);
     assert_eq!(back.projects(), &[prop_id()]);
-    assert_eq!(serde_yaml::to_string(&back).unwrap(), yaml);
+    assert_eq!(serde_norway::to_string(&back).unwrap(), yaml);
 }
 
-fn without_keys(b: &Batten, keys: &[&str]) -> serde_yaml::Value {
-    let mut v = serde_yaml::to_value(b).unwrap();
+fn without_keys(b: &Batten, keys: &[&str]) -> serde_norway::Value {
+    let mut v = serde_norway::to_value(b).unwrap();
     let map = v.as_mapping_mut().unwrap();
     for k in keys {
         map.remove(*k);
@@ -187,7 +187,7 @@ fn without_keys(b: &Batten, keys: &[&str]) -> serde_yaml::Value {
 #[test]
 fn a_batten_written_before_the_field_reads_as_a_prop() {
     let old = without_keys(&prop(), &["distance", "projects"]);
-    let b: Batten = serde_yaml::from_value(old).unwrap();
+    let b: Batten = serde_norway::from_value(old).unwrap();
     assert_eq!(b.distance(), Distance::Prop);
     assert!(b.projects().is_empty());
 }
@@ -195,28 +195,29 @@ fn a_batten_written_before_the_field_reads_as_a_prop() {
 #[test]
 fn loading_a_backdrop_with_no_projects_is_an_error() {
     let v = without_keys(&backdrop(), &["projects"]);
-    let err = serde_yaml::from_value::<Batten>(v).unwrap_err();
+    let err = serde_norway::from_value::<Batten>(v).unwrap_err();
     assert!(err.to_string().contains("projects"), "{err}");
 }
 
 #[test]
 fn loading_a_prop_with_projects_is_an_error() {
-    let mut v = serde_yaml::to_value(prop()).unwrap();
+    let mut v = serde_norway::to_value(prop()).unwrap();
     v.as_mapping_mut().unwrap().insert(
         "projects".into(),
-        serde_yaml::to_value(vec![prop_id()]).unwrap(),
+        serde_norway::to_value(vec![prop_id()]).unwrap(),
     );
-    let err = serde_yaml::from_value::<Batten>(v).unwrap_err();
+    let err = serde_norway::from_value::<Batten>(v).unwrap_err();
     assert!(err.to_string().contains("projects"), "{err}");
 }
 
 #[test]
 fn loading_a_backdrop_with_cataloged_content_is_an_error() {
-    let mut v = serde_yaml::to_value(backdrop()).unwrap();
-    v.as_mapping_mut()
-        .unwrap()
-        .insert("content".into(), serde_yaml::to_value(cataloged()).unwrap());
-    let err = serde_yaml::from_value::<Batten>(v).unwrap_err();
+    let mut v = serde_norway::to_value(backdrop()).unwrap();
+    v.as_mapping_mut().unwrap().insert(
+        "content".into(),
+        serde_norway::to_value(cataloged()).unwrap(),
+    );
+    let err = serde_norway::from_value::<Batten>(v).unwrap_err();
     assert!(err.to_string().contains("held"), "{err}");
 }
 
@@ -237,15 +238,15 @@ fn cue(distance: Option<Distance>) -> Cue {
 
 #[test]
 fn a_cue_records_the_distance_asked_for() {
-    let yaml = serde_yaml::to_string(&cue(Some(Distance::Backdrop))).unwrap();
-    let back: Cue = serde_yaml::from_str(&yaml).unwrap();
+    let yaml = serde_norway::to_string(&cue(Some(Distance::Backdrop))).unwrap();
+    let back: Cue = serde_norway::from_str(&yaml).unwrap();
     assert_eq!(back.distance, Some(Distance::Backdrop));
 }
 
 #[test]
 fn a_cue_written_before_the_field_reads_as_none() {
-    let mut v = serde_yaml::to_value(cue(None)).unwrap();
+    let mut v = serde_norway::to_value(cue(None)).unwrap();
     v.as_mapping_mut().unwrap().remove("distance");
-    let back: Cue = serde_yaml::from_value(v).unwrap();
+    let back: Cue = serde_norway::from_value(v).unwrap();
     assert_eq!(back.distance, None);
 }

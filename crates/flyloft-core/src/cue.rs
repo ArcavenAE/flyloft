@@ -8,7 +8,7 @@
 use serde::{Deserialize, Serialize};
 
 use crate::BattenId;
-use crate::provenance::Contributor;
+use crate::provenance::{Contributor, Distance};
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct CueId(pub String);
@@ -44,6 +44,12 @@ pub struct Cue {
 
     /// Time to retrieve in milliseconds.
     pub latency_ms: Option<u64>,
+
+    /// The distance the retrieval asked for, so the cue sheet shows whether
+    /// an agent oriented (backdrop) or worked (prop). `None` for a cue
+    /// written before the field existed or one that named no distance.
+    #[serde(default)]
+    pub distance: Option<Distance>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

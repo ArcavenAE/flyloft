@@ -1,7 +1,9 @@
 # Design: the distance axis and backdrop and scenery battens
 
-**Status:** option C ruled by the operator, 2026-10-06; the type change below is
-still proposed. Nothing here is built.
+**Status:** option C ruled by the operator, 2026-10-06; items 1 to 6 below are
+built in `flyloft-core` (aae-orc-p4t1.1). `content` is private too, so that a
+backdrop's held content cannot be broken after construction. The CLI verbs are
+not built.
 **Ticket:** `aae-orc-p4t1.1`, flyloft#63. Unblocks `aae-orc-p4t1.5` (the paint verb MVP).
 Answers `aae-orc-p4t1.7` (sub-question D) by citing rulings already made.
 **Sources:** charter F2; `_kos/nodes/frontier/question-stage-rig-lod-axis.yaml`;

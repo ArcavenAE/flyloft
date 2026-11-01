@@ -1,0 +1,30 @@
+id: elem-batten-distance-axis
+type: element
+confidence: frontier
+title: "Distance is stored on the batten and selected by retrieval (option C)"
+content: |
+  Opened 2026-11-01 (harvest I-86) from finding-flyloft-28ki. Every batten
+  carries a distance (backdrop, scenery or prop), fixed when it is created.
+  A retrieval that asks for distance d returns the battens stored at d and
+  nothing else; when none match it names the counts at the other distances
+  and never substitutes a prop for a missing backdrop. The operator ruled
+  this option on 2026-10-06 ("flyloft distance (C)"), and the stored half is
+  built and tested in flyloft-core (flyloft#72): a prop has no `projects`,
+  a backdrop or scenery batten has at least one and held content, and
+  distance cannot change after construction.
+
+  Held at frontier, not bedrock, on purpose. The evidence for bedrock is a
+  written ruling plus shipped tested code, but no verb has read or written
+  a distance yet: the paint verb is unbuilt, so the composition rule has
+  never run end to end. Promotion is the owner's call, and the move is a
+  file move with this evidence in its commit message.
+edges:
+  - target: question-stage-rig-lod-axis
+    type: partially_resolves
+    note: "answers schema representation, default distance on ingest and sub-question D; the verbs stay open"
+  - target: finding-flyloft-28ki-distance-axis-stored-and-selected
+    type: derives
+provenance:
+  created_by: agent
+  session: "I-86 harvest, builder seat"
+  created_at: "2026-11-01"

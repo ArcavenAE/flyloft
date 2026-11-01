@@ -1,7 +1,7 @@
 id: question-stage-rig-lod-axis
 type: question
 confidence: frontier
-title: "Stage-rig LOD axis on battens — ratified flyloft scope; mechanics undesigned"
+title: "Stage-rig LOD axis on battens: ratified flyloft scope; the stored axis is built, the verbs are not"
 content: |
   Ratified INTO flyloft 2026-07-02 (atelier review; ratification-gate
   discipline — this node is the acceptance). Viewing distance becomes
@@ -20,7 +20,24 @@ content: |
   Questions for this repo: schema representation; how rig/fly/cue
   verbs take distance parameters; default distance on ingest; the
   backdrop-authoring workflow.
-edges: []
+
+  UPDATE 2026-11-01 (harvest I-86, finding-flyloft-28ki). Answered:
+  schema representation (a `Distance` on every batten, fixed at creation,
+  with `projects` on backdrop and scenery battens), default distance on
+  ingest (prop), and sub-question D (distance is stored, and the retrieval
+  parameter selects among stored distances; the operator ruled option C on
+  2026-10-06). The stored axis is built in flyloft-core (flyloft#72).
+  Still open: how the paint, refresh and cue verbs take distance (not
+  built), the backdrop-authoring workflow, and O1, which line set a
+  painted backdrop hangs in. The question stays frontier because the verbs
+  are unbuilt.
+edges:
+  - target: finding-flyloft-28ki-distance-axis-stored-and-selected
+    type: supports
+    note: "the stored axis is designed, ruled (option C) and built; the verbs are open"
+  - target: elem-batten-distance-axis
+    type: derives
+    note: "the decided part, split out as its own node"
 provenance:
   created_by: human
   session: session-052
